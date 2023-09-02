@@ -1,4 +1,5 @@
-一、 安装 OpenSSL
+# 使用openssl自签泛域名证书
+## 一、 安装 OpenSSL
 
 ```bash
 # ubuntu
@@ -11,7 +12,7 @@ sudo yum -y install openssl openssl-devel
 vim /etc/pki/tls/openssl.cnf
 ```
 
-二、 生成自签名 CA 根证书
+## 二、 生成自签名 CA 根证书
 
 1. 生成 CA 根证书 RSA 密钥
 
@@ -48,7 +49,7 @@ openssl req -text -in ca.csr -noout
 openssl x509 -req -days 3650 -in ca.csr -signkey ca.key -out ca.crt
 ```
 
-三、 生成客户端 SSL 证书
+## 三、 生成客户端 SSL 证书
 
 1. 生成客户端 SSL 证书私钥
 
@@ -95,9 +96,26 @@ openssl ca -days 365 -in server.csr -out server.crt -cert ca.crt -keyfile ca.key
 # openssl x509 -req -CA ca.crt -CAkey ca.key -CAcreateserial -in server.csr -out server.crt -extfile server.ext
 ```
 
-四、 nginx 部署
+## 四、 nginx 部署
 
-1. 编辑 nginx/conf.d/default.conf
+1. docker 中安装启动 nginx
+
+```bash
+docker pull nginx
+mkdir -p /data/nginx/{conf,conf.d,html,logs,certs}
+sudo chown ubuntu:ubuntu /data/nginx
+docker run --name nginx -d -p 80:80 \
+  -p 443:443 \
+  -v /data/nginx/conf/nginx.conf:/etc/nginx/nginx.conf  \
+  -v /data/nginx/conf.d/:/etc/nginx/conf.d \
+  -v /data/nginx/html:/etc/nginx/html \
+  -v /data/nginx/logs:/var/log/nginx \
+  -v /data/nginx/certs:/etc/nginx/certs \
+  -v /etc/localtime:/etc/localtime:ro \
+  nginx
+```
+
+2. 编辑 nginx/conf.d/default.conf
 
 ```conf
 server {
@@ -150,15 +168,19 @@ server.key 大概长这样
 -----END PRIVATE KEY-----
 ```
 
-五、本地系统安装 CA 证书
+## 五、本地系统安装 CA 证书
 
 在浏览器中也能操作 手机中也是同理
+
 (1). 双击 ca.crt 安装证书
 ![双击ca.crt安装证书](install_ca.png)
+
 (2). 选择本地计算机也可以选个人
 ![选择本地计算机](install_ca2.png)
+
 (3). 选择安装到 受信任的根证书颁发机构
 ![选择安装到根证书目录](install_ca3.png)
+
 (4). 最后点击完成
 开始菜单 运行 certmgr.msc 看到安装好的证书
 ![选择安装到根证书目录](install_ca_check1.png)

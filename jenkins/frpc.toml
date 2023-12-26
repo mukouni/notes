@@ -1,0 +1,30 @@
+serverAddr = "104.168.30.145"
+serverPort = 7000
+vhostHTTPSPort = 8080
+
+#transport.tls.enable = true
+#transport.tls.certFile = "/home/ubuntu/ssl/tls.cert"
+#transport.tls.keyFile = "/home/ubuntu/ssl/tls.key"
+#transport.tls.trustedCaFile = "/home/ubuntu/ssl/rootCA.pem"
+#transport.tls.serverName = "kougen.buzz"
+
+auth.method = "token"
+auth.token = "manbuzhe12345678"
+#log.to = "./frpc.log"
+#log.level = "info"
+#log.maxDays = 3
+#log.disablePrintColor = false
+
+[[proxies]]
+name = "jenkins"
+type = "https"
+#subdomain = "jenkins"
+customDomains = ["jenkins.kougen.buzz"]
+
+[proxies.plugin]
+type = "https2http"
+localAddr = "127.0.0.1:31166" #需要把jenkins service 改为 NodePort
+crtPath = "./kougen.buzz.cert.pem"
+keyPath = "./kougen.buzz.key.pem"
+#hostHeaderRewrite = "jenkins.kougen.buzz"
+#requestHeaders.set.x-from-where = "frp"

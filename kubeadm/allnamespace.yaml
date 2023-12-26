@@ -1,0 +1,61 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Namespace
+  metadata:
+    creationTimestamp: "2023-10-08T12:29:58Z"
+    labels:
+      kubernetes.io/metadata.name: default
+    name: default
+    resourceVersion: "192"
+    uid: 78e8c4ce-d1e0-47cf-b5cc-7efdb8340ef0
+  spec:
+    finalizers:
+    - kubernetes
+  status:
+    phase: Active
+- apiVersion: v1
+  kind: Namespace
+  metadata:
+    creationTimestamp: "2023-10-08T12:29:57Z"
+    labels:
+      kubernetes.io/metadata.name: kube-node-lease
+    name: kube-node-lease
+    resourceVersion: "10"
+    uid: 0b21f231-092b-44fa-99c9-25b9d20a0e8a
+  spec:
+    finalizers:
+    - kubernetes
+  status:
+    phase: Active
+- apiVersion: v1
+  kind: Namespace
+  metadata:
+    creationTimestamp: "2023-10-08T12:29:57Z"
+    labels:
+      kubernetes.io/metadata.name: kube-public
+    name: kube-public
+    resourceVersion: "8"
+    uid: fd87efdc-a135-41e4-b79c-e6a0de5f740a
+  spec:
+    finalizers:
+    - kubernetes
+  status:
+    phase: Active
+- apiVersion: v1
+  kind: Namespace
+  metadata:
+    creationTimestamp: "2023-10-08T12:29:57Z"
+    labels:
+      kubernetes.io/metadata.name: kube-system
+    name: kube-system
+    resourceVersion: "4"
+    uid: ae249c70-601f-4466-ab92-4e3b6c512ba8
+  spec:
+    finalizers:
+    - kubernetes
+  status:
+    phase: Active
+kind: List
+metadata:
+  resourceVersion: ""

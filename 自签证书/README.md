@@ -182,9 +182,22 @@ server.key 大概长这样
 ![选择安装到根证书目录](install_ca3.png)
 
 (4). 最后点击完成
+```zsh
+echo | openssl s_client -CAfile server.crt -connect kougen.asia:443 -servername kougen.asia
+```
 开始菜单 运行 certmgr.msc 看到安装好的证书
 ![选择安装到根证书目录](install_ca_check1.png)
 浏览器中也看到 https 是安全连接的
 ![选择安装到根证书目录](install_ca_check2.png)
 
 [腾讯云上传 ssl 证书](https://console.cloud.tencent.com/ssl/dsc/upload)
+
+六、 单独生成证书 跳过Ca以及其他中间证书
+
+```zsh
+openssl req -x509 -out gitlab.domain.com.crt -keyout gitlab.domain.com.key -days 365 \
+  -newkey rsa:2048 -nodes -sha256 \
+  -subj '/CN=gitlab.domain.com' -extensions EXT -config <( \
+   printf "[dn]\nCN=gitlab.domain.com\n[req]\ndistinguished_name = dn\n[EXT]\nsubjectAltName=DNS:gitlab.domain.com\nkeyUsage=digitalSignature\nextendedKeyUsage=serverAuth")
+```
+然后部署 key和crt到nginx 本地再安装 crt证书到受信任的根证书颁发机构

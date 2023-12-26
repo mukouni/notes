@@ -1,0 +1,123 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Node
+  metadata:
+    annotations:
+      kubeadm.alpha.kubernetes.io/cri-socket: unix:///var/run/containerd/containerd.sock
+      node.alpha.kubernetes.io/ttl: "0"
+      volumes.kubernetes.io/controller-managed-attach-detach: "true"
+    creationTimestamp: "2023-10-08T12:29:57Z"
+    labels:
+      beta.kubernetes.io/arch: amd64
+      beta.kubernetes.io/os: linux
+      kubernetes.io/arch: amd64
+      kubernetes.io/hostname: cloud
+      kubernetes.io/os: linux
+      node-role.kubernetes.io/control-plane: ""
+      node.kubernetes.io/exclude-from-external-load-balancers: ""
+    name: cloud
+    resourceVersion: "14554"
+    uid: 6c26ecad-4fa4-454e-9623-49339e3f9099
+  spec:
+    taints:
+    - effect: NoSchedule
+      key: node-role.kubernetes.io/control-plane
+    - effect: NoSchedule
+      key: node.kubernetes.io/not-ready
+  status:
+    addresses:
+    - address: 172.29.240.10
+      type: InternalIP
+    - address: cloud
+      type: Hostname
+    allocatable:
+      cpu: "2"
+      ephemeral-storage: "10338943779"
+      hugepages-1Gi: "0"
+      hugepages-2Mi: "0"
+      memory: 1841576Ki
+      pods: "110"
+    capacity:
+      cpu: "2"
+      ephemeral-storage: 11218472Ki
+      hugepages-1Gi: "0"
+      hugepages-2Mi: "0"
+      memory: 1943976Ki
+      pods: "110"
+    conditions:
+    - lastHeartbeatTime: "2023-10-08T15:32:01Z"
+      lastTransitionTime: "2023-10-08T12:29:56Z"
+      message: kubelet has sufficient memory available
+      reason: KubeletHasSufficientMemory
+      status: "False"
+      type: MemoryPressure
+    - lastHeartbeatTime: "2023-10-08T15:32:01Z"
+      lastTransitionTime: "2023-10-08T12:29:56Z"
+      message: kubelet has no disk pressure
+      reason: KubeletHasNoDiskPressure
+      status: "False"
+      type: DiskPressure
+    - lastHeartbeatTime: "2023-10-08T15:32:01Z"
+      lastTransitionTime: "2023-10-08T12:29:56Z"
+      message: kubelet has sufficient PID available
+      reason: KubeletHasSufficientPID
+      status: "False"
+      type: PIDPressure
+    - lastHeartbeatTime: "2023-10-08T15:32:01Z"
+      lastTransitionTime: "2023-10-08T12:29:56Z"
+      message: 'container runtime network not ready: NetworkReady=false reason:NetworkPluginNotReady
+        message:Network plugin returns error: cni plugin not initialized'
+      reason: KubeletNotReady
+      status: "False"
+      type: Ready
+    daemonEndpoints:
+      kubeletEndpoint:
+        Port: 10250
+    images:
+    - names:
+      - registry.aliyuncs.com/google_containers/etcd@sha256:dd75ec974b0a2a6f6bb47001ba09207976e625db898d1b16735528c009cb171c
+      - registry.aliyuncs.com/google_containers/etcd:3.5.6-0
+      sizeBytes: 102542580
+    - names:
+      - registry.aliyuncs.com/google_containers/kube-apiserver@sha256:afbd2900286edac051b696caa4b2883354d86bc50ba88d2e098051f7d1cab696
+      - registry.aliyuncs.com/google_containers/kube-apiserver:v1.26.9
+      sizeBytes: 36208437
+    - names:
+      - registry.aliyuncs.com/google_containers/kube-controller-manager@sha256:1536d613d14ae3859a6c305a6edf0da62003a577e8ee28006fa328fe235c8046
+      - registry.aliyuncs.com/google_containers/kube-controller-manager:v1.26.9
+      sizeBytes: 32913723
+    - names:
+      - registry.aliyuncs.com/google_containers/kube-proxy@sha256:391dd291eb93c43268f42c3a799d01dfcdf8ac40281172cf3495c3970b71391e
+      - registry.aliyuncs.com/google_containers/kube-proxy:v1.26.9
+      sizeBytes: 21769395
+    - names:
+      - registry.aliyuncs.com/google_containers/kube-scheduler@sha256:cee115fbb3e64600d2db280cf8bf4d2f6c40172335bc2978d5a406d4091438be
+      - registry.aliyuncs.com/google_containers/kube-scheduler:v1.26.9
+      sizeBytes: 17976599
+    - names:
+      - registry.aliyuncs.com/google_containers/coredns@sha256:8e352a029d304ca7431c6507b56800636c321cb52289686a581ab70aaa8a2e2a
+      - registry.aliyuncs.com/google_containers/coredns:v1.9.3
+      sizeBytes: 14837849
+    - names:
+      - registry.aliyuncs.com/google_containers/pause@sha256:7031c1b283388d2c2e09b57badb803c05ebed362dc88d84b480cc47f72a21097
+      - registry.aliyuncs.com/google_containers/pause:3.9
+      sizeBytes: 321520
+    - names:
+      - registry.aliyuncs.com/google_containers/pause@sha256:9001185023633d17a2f98ff69b6ff2615b8ea02a825adffa40422f51dfdcde9d
+      - registry.aliyuncs.com/google_containers/pause:3.8
+      sizeBytes: 311286
+    nodeInfo:
+      architecture: amd64
+      bootID: b9943969-6026-432f-b991-661268ade939
+      containerRuntimeVersion: containerd://1.7.6
+      kernelVersion: 5.15.0-86-generic
+      kubeProxyVersion: v1.26.9
+      kubeletVersion: v1.26.9
+      machineID: 35ba329e142f43dfa96bc0746c890e1b
+      operatingSystem: linux
+      osImage: Ubuntu 22.04.3 LTS
+      systemUUID: 96cc05e1-4012-4170-8d74-b63085e277ca
+kind: List
+metadata:
+  resourceVersion: ""
